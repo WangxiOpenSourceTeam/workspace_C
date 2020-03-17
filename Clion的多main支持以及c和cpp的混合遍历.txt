@@ -1,0 +1,17 @@
+#cmake运行的最低版本
+cmake_minimum_required(VERSION 3.15)
+#指定的项目名
+project(helloWorld)
+#指定代码的标准这里是C99
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 14)
+#添加可执行文件的构建目标
+#add_executable(HelloClang HelloClang.c)
+#add_executable(helloWorld main.c helloWorld.c)
+#add_executable(HelloWorld HelloWorld.c)
+file (GLOB files *.c OR *.cpp)
+foreach(file ${files})
+    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
+    add_executable (${exe} ${file})
+    message (\ \ \ \ --\ src/${exe}.c OR \ \ \ \ --\ src/${exe}.cpp\ will\ be\ compiled\ to\ bin/${exe})
+endforeach ()
